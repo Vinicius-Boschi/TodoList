@@ -21,7 +21,7 @@ py-3 pr-3">
         methods: {
             addTodo() {
                 if (!this.title) {
-                    return falsew
+                    return false
                 }
                 this.$store.dispatch('addTodo', {
                     title: this.title,

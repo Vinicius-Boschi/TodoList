@@ -4,8 +4,8 @@
             <Spinner v-if="loading"/>
             <template v-else>
                 <Form />
-                <Items />
-                <Empty />  
+                <Items v-if="$store.state.todos.length" />
+                <Empty v-else/>  
             </template>
         </div>
     </div>
