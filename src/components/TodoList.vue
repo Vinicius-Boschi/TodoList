@@ -12,6 +12,8 @@
 </template>
 
 <script>
+    import { ref } from 'vue'
+    import { useStore } from 'vuex'
     import Spinner from './Spinner.vue'
     import Form from './Form.vue'
     import Items from './Items.vue'
@@ -19,22 +21,24 @@
 
     export default {
         name: "TodoList",
-        components: {
+        components: {   
             Spinner,
             Form,
             Items,
             Empty
         },
-        data() {
-            return {
-                loading: false
-            }
-        },
-        created() {
-            this.loading = true
-            this.$store.dispatch('getTodos').finally(() => {
-                this.loading = false
+        setup() {
+            const loading = ref(false)
+            const store = useStore()
+
+            loading.value = true
+            store.dispatch('getTodos').finally(() => {
+                loading.value = false
             })
+
+            return {
+                loading
+            }
         }
     }   
 </script>
